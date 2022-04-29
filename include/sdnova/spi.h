@@ -39,9 +39,6 @@ struct SpiData {
   float qd_knee[2];
   uint32_t flags[2];
   uint32_t checksum;
-  float tau_abad[2];
-  float tau_hip[2];
-  float tau_knee[2];
 };
 
 bool InitSpi(char const *spi1, char const *spi2);

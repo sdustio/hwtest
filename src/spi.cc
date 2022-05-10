@@ -200,20 +200,18 @@ bool RunSpi() {
     }
 
     // spi message struct
-    struct spi_ioc_transfer spi_message[1];
+    struct spi_ioc_transfer spi_message;
     // zero message struct.
-    std::memset(spi_message, 0, 1 * sizeof(struct spi_ioc_transfer));
+    std::memset(&spi_message, 0, sizeof(struct spi_ioc_transfer));
     // set up message struct
-    std::size_t i = 0;
-    spi_message[i].bits_per_word = consts::kSpiBitsPerWord;
-    spi_message[i].cs_change = 1;
-    spi_message[i].delay_usecs = 0;
-    spi_message[i].len = consts::kSpiLen;
-    spi_message[i].rx_buf = (uint64_t)gd::rx_buf;
-    spi_message[i].tx_buf = (uint64_t)gd::tx_buf;
+    spi_message.bits_per_word = consts::kSpiBitsPerWord;
+    spi_message.delay_usecs = 0;
+    spi_message.len = consts::kSpiLen;
+    spi_message.rx_buf = (uint64_t)gd::rx_buf;
+    spi_message.tx_buf = (uint64_t)gd::tx_buf;
 
     // do spi communication
-    rv = ioctl(spi_board == 0 ? gd::spi_1_fd : gd::spi_2_fd, SPI_IOC_MESSAGE(1), spi_message);
+    rv = ioctl(spi_board == 0 ? gd::spi_1_fd : gd::spi_2_fd, SPI_IOC_MESSAGE(1), &spi_message);
     if (rv < 0) {
       std::perror("SPI Communication Error");
       return false;

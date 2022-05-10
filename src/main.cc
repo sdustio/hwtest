@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  for (size_t i = 599'999; i < 600'000; i++) {
+  for (size_t i = 0; i < 1000; i++) {
     WriteInFrom(legcmds);
     if (!RunSpi()) {
       std::cout << "Communication error\n";
@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
     ReadOutTo(legdatas);
     // legdatas
-    std::this_thread::sleep_for(std::chrono::milliseconds(2));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
   return 0;
 }

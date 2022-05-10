@@ -213,7 +213,7 @@ bool RunSpi() {
     spi_message[i].tx_buf = (uint64_t)gd::tx_buf;
 
     // do spi communication
-    rv = ioctl(spi_board == 0 ? gd::spi_1_fd : gd::spi_2_fd, SPI_IOC_MESSAGE(1), &spi_message);
+    rv = ioctl(spi_board == 0 ? gd::spi_1_fd : gd::spi_2_fd, SPI_IOC_MESSAGE(1), spi_message);
     if (rv < 0) {
       std::perror("SPI Communication Error");
       return false;
@@ -288,4 +288,10 @@ void CmdToSpi(std::size_t leg_0) {
   }
   gd::spi_cmd.checksum =
       xor_checksum((std::uint32_t *)&gd::spi_cmd, consts::kSpiCmdChecksumBytes / sizeof(std::uint32_t));
+}
+
+bool CloseSpi(){
+  close(gd::spi_1_fd);
+  close(gd::spi_2_fd);
+  return true;
 }

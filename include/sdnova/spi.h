@@ -45,6 +45,8 @@ bool InitSpi(char const *spi1, char const *spi2);
 
 bool RunSpi();
 
+bool CloseSpi();
+
 bool ReadOutTo(sdquadx::sensor::LegDatas &data);
 
 bool WriteInFrom(sdquadx::interface::LegCmds const &cmds);

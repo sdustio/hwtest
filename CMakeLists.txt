@@ -19,7 +19,7 @@ endif()
 
 # find dependencies
 find_package(serial REQUIRED)
-find_package(sdquadx REQUIRED)
+find_package(spotng REQUIRED)
 
 add_executable(${PROJECT_NAME})
 
@@ -33,7 +33,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(${PROJECT_NAME} sdquadx::sdquadx serial::serial)
+target_link_libraries(${PROJECT_NAME} spotng::spotng serial::serial)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
   INSTALL_RPATH_USE_LINK_PATH ON

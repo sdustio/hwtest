@@ -2,11 +2,11 @@
 #include <iostream>
 #include <thread>
 
-#include "sdnova/spi.h"
+#include "openspot/spi.h"
 
 int main(int argc, char** argv) {
-  sdquadx::sensor::LegDatas legdatas;
-  sdquadx::interface::LegCmds legcmds;
+  spotng::sensor::LegDatas legdatas;
+  spotng::interface::LegCmds legcmds;
 
   // legcmds
   for (auto& cmd : legcmds) {
